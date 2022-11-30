@@ -11,18 +11,15 @@ for i in range(0, 6) :
             pass
 print(arr)
             
-# for c in range(0, len(arr)) :
-#     if c == 0 :
-#         pass
-#     else :
-#         d = arr[c - 1] # arr[0]
-#         e = arr[c] # arr[1]
-#         if arr[c - 1] > arr[c] :
-#             arr[c - 1] = e
-#             arr[c] = d
-#         else :
-#             pass
-# print(arr)
+for k in range(0, 5) :
+    for l in range(k + 1, 6) :
+        a = arr[k]
+        b = arr[l]
+        if a > b :
+            arr[k] = b
+            arr[l] = a
+print(arr)
+
 
 """ 선생님 """
 # arr45 = range(0, 46)
