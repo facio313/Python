@@ -14,9 +14,8 @@ class MyWindow(QMainWindow, form_class):
         
     def myclick(self):
         a = self.leMine.text()
-        print(a)
         
-        b = random() # 여기 문제
+        b = random()
         c = ""
         if b > 0.5 :
             c = "짝"
