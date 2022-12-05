@@ -10,14 +10,13 @@ class MyWindow(QMainWindow, form_class):
         super().__init__()
         self.setupUi(self)
         
-        no1 = (int)(random()*9+1);
-        no2 = (int)(random()*9+1);
-        no3 = (int)(random()*9+1);
+        no1 = int(random()*9+1);
+        no2 = int(random()*9+1);
+        no3 = int(random()*9+1);
         
         while no1 == no2 or no2 == no3 or no3 == no1 :
             no2 = (int)(random()*9+1);
             no3 = (int)(random()*9+1);
-        
         
         self.num1 = str(no1)
         self.num2 = str(no2)
@@ -25,9 +24,9 @@ class MyWindow(QMainWindow, form_class):
         
         number = self.num1 + self.num2 + self.num3
         print(number)
+        # substring -> [] ex) str.substring(0, 1) => str[0 : 1]
         
         self.pb.clicked.connect(self.myclick)
-        
         
     def myclick(self):
         myNumber = self.le.text()
@@ -51,16 +50,15 @@ class MyWindow(QMainWindow, form_class):
                 s += 1
             else :
                 b += 1
-
+                
         str_old = self.te.toPlainText()
         str_new = myNumber + " " + str(s) + "S " + str(b) + "B\n"
                 
         self.te.setText(str_new + str_old)
         
         if s == 3 and b == 0 :
-            QMessageBox.question(None, "결과", "추카추카", QMessageBox.Yes, QMessageBox.NoButton)
+            QMessageBox.question(None, "결과", myNumber + " 추카추카", QMessageBox.Yes, QMessageBox.NoButton)
 
-        
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     myWindow = MyWindow()
