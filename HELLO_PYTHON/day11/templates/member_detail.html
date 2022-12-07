@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MEMBER DETAIL</title>
+<script>
+	function fn_edit(){
+		var m_id = "{{one.m_id}}";
+		location.href = "member_edit?m_id=" + m_id;
+	}
+	function fn_del(){
+		if (confirm("되돌릴 수 없습니다. \n정말 삭제하시겠습니까?")) {
+			document.frm.submit();
+		} else {
+			return ;
+		}
+	}
+</script>
+</head>
+<body>
+<form action="member_delete" name="frm" method="post">
+	<input type="hidden" name="m_id" value="{{one.m_id}}">
+</form>
+<table border="1px">
+    <thead>
+        <tr>
+            <th>항목</th>
+            <th>상세</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>회원 아이디</td>
+            <td>{{one.m_id}}</td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td>{{one.m_nm}}</td>
+        </tr>
+        <tr>
+            <td>전화번호</td>
+            <td>{{one.tel}}</td>
+        </tr>
+                <tr>
+            <td>생년월일</td>
+            <td>{{one.ymd}}</td>
+        </tr>
+        <tr>
+        	<td colspan="2">
+<!-- 				<input type="button" onclick="location.href='member_edit?m_id={{ one.m_id }}'" value="수정"> -->
+				<input type="button" onclick="fn_edit()" value="수정">
+<!-- 				<input type="button" onclick="location.href='member_delete?m_id={{ one.m_id }}'" value="삭제">        	 -->
+				<input type="button" onclick="fn_del()" value="삭제">
+        	</td>
+        </tr>
+  	</tbody>
+</table>
+
+
+</body>
+</html>

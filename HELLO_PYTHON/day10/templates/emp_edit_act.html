@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EMP_EDIT_ACT</title>
+<script>
+var cnt = "{{cnt}}";
+if (cnt == 1) {
+	alert("정상적으로 수정되었습니다.");
+	location.href = "emp_list";
+} else if (cnt == 10000){
+	alert("글자수 제한을 초과하였습니다.");
+	history.back();
+} else {
+	history.back();
+// 	history.go(-1);
+}
+</script>
+</head>
+<body>
+
+</body>
+</html>

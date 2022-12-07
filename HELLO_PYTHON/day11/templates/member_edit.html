@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MEMBER EDIT</title>
+</head>
+<body>
+
+<form action="http://127.0.0.1:5000/member_edit_act" method="post">
+<table border="1px">
+    <thead>
+        <tr>
+            <th>항목</th>
+            <th>상세</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>사번</td>
+            <td><input type="text" name="m_id" value="{{one.m_id}}" readonly></td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td><input type="text" name="m_nm" value="{{one.m_nm}}"></td>
+        </tr>
+        <tr>
+            <td>성별</td>
+            <td><input type="text" name="tel" value="{{one.tel}}"></td>
+        </tr>
+        <tr>
+            <td>주소</td>
+            <td><input type="text" name="ymd" value="{{one.ymd}}"></td>
+        </tr>
+        <tr>
+        	<td colspan="2">
+				<input type="submit" value="실행">        	
+        	</td>
+        </tr>
+  	</tbody>
+</table>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EMP EDIT</title>
+</head>
+<body>
+
+<form action="http://127.0.0.1:5000/emp_edit_act" method="post">
+<table border="1px">
+    <thead>
+        <tr>
+            <th>항목</th>
+            <th>상세</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>사번</td>
+            <td><input type="text" name="e_id" value="{{one.e_id}}" readonly></td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td><input type="text" name="e_name" value="{{one.e_name}}"></td>
+        </tr>
+        <tr>
+            <td>성별</td>
+            <td><input type="text" name="sex" value="{{one.sex}}"></td>
+        </tr>
+        <tr>
+            <td>주소</td>
+            <td><input type="text" name="addr" value="{{one.addr}}"></td>
+        </tr>
+        <tr>
+        	<td colspan="2">
+				<input type="submit" value="실행">        	
+        	</td>
+        </tr>
+  	</tbody>
+</table>
+</form>
+
+</body>
+</html>

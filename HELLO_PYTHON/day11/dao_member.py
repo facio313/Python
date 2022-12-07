@@ -1,38 +1,38 @@
 import psycopg2
 
-class Dao:
+class MemberDao:
     def __init__(self):
         self.connection = psycopg2.connect(database="python", user="postgres", password="python")
         self.cursor = self.connection.cursor()
     
     def selects(self):
         mydict = []
-        self.cursor.execute("select e_id, e_name, sex, addr from emp")
+        self.cursor.execute("select m_id, m_nm, tel, ymd from member")
         data = self.cursor.fetchall()
         
         for i in data:
-            mydict.append({"e_id" : i[0], "e_name" : i[1], "sex" : i[2], "addr" : i[3]})
+            mydict.append({"m_id" : i[0], "m_nm" : i[1], "tel" : i[2], "ymd" : i[3]})
             
         return mydict
     
-    def select(self, e_id):
-        self.cursor.execute(f"select  e_id, e_name, sex, addr from emp where e_id = '{e_id}'")
+    def select(self, m_id):
+        self.cursor.execute(f"select  m_id, m_nm, tel, ymd from member where m_id = '{m_id}'")
         data = self.cursor.fetchall()
-        row = {'e_id':data[0][0], 'e_name':data[0][1], 'sex':data[0][2], 'addr':data[0][3]}
+        row = {'m_id':data[0][0], 'm_nm':data[0][1], 'tel':data[0][2], 'ymd':data[0][3]}
         return row
     
-    def insert(self, e_id, e_name, sex, addr):
-        self.cursor.execute(f"insert into emp values ('{e_id}', '{e_name}', '{sex}', '{addr}')")
+    def insert(self, m_id, m_nm, tel, ymd):
+        self.cursor.execute(f"insert into member values ('{m_id}', '{m_nm}', '{tel}', '{ymd}')")
         self.connection.commit()
         return self.cursor.rowcount
 
-    def update(self, e_id, e_name, sex, addr):
-        self.cursor.execute(f"update emp set e_name = '{e_name}', sex = '{sex}', addr = '{addr}' where e_id = '{e_id}'")
+    def update(self, m_id, m_nm, tel, ymd):
+        self.cursor.execute(f"update member set m_nm = '{m_nm}', tel = '{tel}', ymd = '{ymd}' where m_id = '{m_id}'")
         self.connection.commit()
         return self.cursor.rowcount
     
-    def delete(self, e_id):
-        self.cursor.execute(f"delete from emp where e_id = '{e_id}'")
+    def delete(self, m_id):
+        self.cursor.execute(f"delete from member where m_id = '{m_id}'")
         self.connection.commit()
         return self.cursor.rowcount
     
@@ -41,13 +41,13 @@ class Dao:
         self.connection.close()
         
 if __name__ == '__main__':
-    ds = Dao()
+    ds = MemberDao()
     
     list = ds.selects()
     print(list)
     
-    sample = ds.select('1')
-    print(sample)
+    # sample = ds.select('1')
+    # print(sample)
     
     cnt = ds.insert('4', '4', '4', '4')
     print(cnt)

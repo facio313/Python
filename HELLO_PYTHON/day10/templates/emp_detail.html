@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EMP DETAIL</title>
+<script>
+	function fn_edit(){
+		var e_id = "{{one.e_id}}";
+		location.href = "emp_edit?e_id=" + e_id;
+	}
+	function fn_del(){
+		if (confirm("되돌릴 수 없습니다. \n정말 삭제하시겠습니까?")) {
+			document.frm.submit();
+		} else {
+			return ;
+		}
+	}
+</script>
+</head>
+<body>
+<form action="emp_delete" name="frm" method="post">
+	<input type="hidden" name="e_id" value="{{one.e_id}}">
+</form>
+<table border="1px">
+    <thead>
+        <tr>
+            <th>항목</th>
+            <th>상세</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>사번</td>
+            <td>{{one.e_id}}</td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td>{{one.e_name}}</td>
+        </tr>
+        <tr>
+            <td>성별</td>
+            <td>{{one.sex}}</td>
+        </tr>
+                <tr>
+            <td>주소</td>
+            <td>{{one.addr}}</td>
+        </tr>
+        <tr>
+        	<td colspan="2">
+<!-- 				<input type="button" onclick="location.href='emp_edit?e_id={{ one.e_id }}'" value="수정"> -->
+				<input type="button" onclick="fn_edit()" value="수정">
+<!-- 				<input type="button" onclick="location.href='emp_delete?e_id={{ one.e_id }}'" value="삭제">        	 -->
+				<input type="button" onclick="fn_del()" value="삭제">
+        	</td>
+        </tr>
+  	</tbody>
+</table>
+
+
+</body>
+</html>
