@@ -7,7 +7,7 @@ class Dao:
     
     def selects(self):
         mydict = []
-        self.cursor.execute("select e_id, e_name, sex, addr from emp")
+        self.cursor.execute("select e_id, e_name, sex, addr from emp order by e_id")
         data = self.cursor.fetchall()
         
         for i in data:

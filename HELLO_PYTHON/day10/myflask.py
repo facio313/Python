@@ -38,7 +38,7 @@ def emp_edit_act():
     sex = request.form['sex']
     addr = request.form['addr']
     
-    cnt = ""
+    cnt = 0
     
     try :
         cnt = de.update(id, name, sex, addr)
@@ -63,7 +63,7 @@ def emp_delete():
     id = request.form['e_id']
     # id = request.args.get('e_id')
     
-    cnt = ""
+    cnt = 0
     
     try :
         cnt = de.delete(id)
@@ -94,7 +94,7 @@ def emp_add_act():
     sex = request.form['sex']
     addr = request.form['addr']
     
-    cnt = ""
+    cnt = 0
      
     try : 
         cnt = de.insert(id, name, sex, addr)
