@@ -1,0 +1,20 @@
+from flask import Flask
+from flask import request
+from flask.templating import render_template
+from flask.json import jsonify
+from day10.dao_emp import Dao
+    
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('hello.html')
+
+@app.route('/ajax')
+def ajax():
+    de = Dao()
+    list = de.selects()
+    return jsonify(list = list)
+
+if __name__ == '__main__':
+    app.run()

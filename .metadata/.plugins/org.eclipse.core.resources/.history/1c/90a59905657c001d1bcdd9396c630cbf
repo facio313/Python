@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body onload="loader()">
+<script>
+function loader(){
+	var canvas = document.getElementById( "canvas" );   // canvas 객체
+	var ctx = canvas.getContext( "2d" );      // 2d canvas 획득
+	
+	ctx.beginPath();
+	ctx.arc(150, 150, 40, 0, Math.PI*2, false );
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.arc(450, 150, 40, 0, Math.PI*2, false );
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.arc(450, 450, 40, 0, Math.PI*2, false );
+	ctx.stroke();
+	
+	ctx.beginPath();
+	ctx.arc(150, 450, 40, 0, Math.PI*2, false );
+	ctx.stroke();
+	
+	ctx.fillStyle = "rgba(255, 255, 0, 1)";
+	ctx.fillRect (270, 250, 75, 75);
+}
+</script>
+ 
+ <canvas id="canvas" width="600" height="500"/>
+ 
+</body>
+</html>

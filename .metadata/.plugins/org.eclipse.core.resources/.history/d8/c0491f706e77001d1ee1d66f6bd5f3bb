@@ -1,0 +1,12 @@
+package day14;
+
+public class MyFunc {
+	
+	public static void showNum() {
+		for (var i = 0)
+	}
+	
+	public static void main(String[] args) {
+		showNum();
+	}
+}

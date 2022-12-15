@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+function fn_list() {
+	axios.post('/ajax_teacher_list', {
+		
+	})
+	.then(function(res) {
+		var list = res.data.list;
+        var html = "";
+		for (var i = 0; i < list.length; i++) {
+   			var one = list[i];
+   			html += `
+				<tr>
+				<td><a href="javascript:fn_one('${one.t_id}')">${one.t_id}</a></td>
+				<td>${one.t_name}</td>
+				<td>${one.mobile}</td>
+				<td>${one.addr}</td>
+				</tr>
+   			`;
+    	}
+    	var obj = document.querySelector("#my_tbody");
+    	obj.innerHTML = html;
+    	
+    	document.querySelector("#t_id").value = "";
+    	document.querySelector("#t_name").value = "";
+    	document.querySelector("#mobile").value = "";
+    	document.querySelector("#addr").value = "";
+	});
+}
+	
+function fn_one(t_id) {
+	axios.post('/ajax_teacher_one', { // 보내는 부분
+		t_id : t_id
+	})
+	.then(function(res) { // 받는 부분
+		var one = res.data.one;
+    	document.querySelector("#t_id").value = one.t_id;
+    	document.querySelector("#t_name").value = one.t_name;
+    	document.querySelector("#mobile").value = one.mobile;
+    	document.querySelector("#addr").value = one.addr;
+	});
+}
+
+function fn_one(t_id) {
+	axios.post('/ajax_teacher_one', { // 보내는 부분
+		t_id : t_id
+	})
+	.then(function(res) { // 받는 부분
+		var one = res.data.one;
+    	document.querySelector("#t_id").value = one.t_id;
+    	document.querySelector("#t_name").value = one.t_name;
+    	document.querySelector("#mobile").value = one.mobile;
+    	document.querySelector("#addr").value = one.addr;
+	});
+}
+
+function fn_add() {
+	var t_name = document.querySelector("#t_name").value
+	var mobile = document.querySelector("#mobile").value
+	var addr = document.querySelector("#addr").value
+	
+	axios.post('/ajax_teacher_add', { // 보내는 부분
+		t_name : t_name,
+		mobile : mobile,
+		addr : addr
+	})
+	.then(function(res) { // 받는 부분
+		if (res.data.cnt == 1){
+			alert("정상적으로 추가되었습니다.");
+			fn_list();
+		} else if (res.data.cnt == 10000){
+			alert("글자수 제한을 초과하였습니다.");
+		} else {
+			alert("추가 도중 문제가 생겼습니다.");
+		}
+	});
+}
+</script>
+</head>
+<body onload="fn_list()">
+
+<table border="1px">
+	<thead>
+		<tr>
+			<td>사번</td>
+			<td>이름</td>
+			<td>전화</td>
+			<td>주소</td>
+		</tr>
+	</thead>
+	<tbody id="my_tbody">
+		<tr>
+			<td colspan="4">검색된 데이터가 없습니다.</td>
+		</tr>
+	</tbody>
+</table>
+
+<table border="1px">
+	<tr>
+		<td>사번</td>
+		<td>
+			<input type="text" id="t_id" value="추가 시 자동적으로 생성됩니다.">
+		</td>
+	</tr>
+	<tr>
+		<td>이름</td>
+		<td>
+			<input type="text" id="t_name">
+		</td>
+	</tr>
+	<tr>
+		<td>전화</td>
+		<td>
+			<input type="text" id="mobile">
+		</td>
+	</tr>
+	<tr>
+		<td>주소</td>
+		<td>
+			<input type="text" id="addr">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" onclick="fn_add()" value="추가">
+			<input type="button" onclick="fn_edit()" value="수정">
+			<input type="button" onclick="fn_delete()" value="삭제">
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

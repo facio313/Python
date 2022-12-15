@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+function fn_num() {
+	
+}
+
+function fn_main() {
+// 	axios.post('/ajax_thread1', {
+		
+// 	})
+// 	.then(function(res) {
+// 	});
+}
+</script>
+</head>
+<body onload="fn_list()">
+
+</body>
+</html>

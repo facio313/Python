@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chat Room</title>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+<script>
+var sock;
+
+function fn_init() {
+	sock = io.connect('http://192.168.35.51:9999');
+    sock.on('connect', function(){
+        console.log("i connect");
+    });
+
+    sock.on('message', function(msg){
+    	var info = msg.message;
+    	var infos = info.split(":");
+    	console.log(infos);
+    	if(infos[0] == "ready"){
+	    	rv_ready(infos[1]);
+    	}
+    	if(infos[0] == "isdone"){
+    		rv_isdone(infos[1]);
+    	}
+    	if(infos[0] == "done"){
+    		rv_done(infos[1]);
+    	}
+    });
+}
+
+function rv_done(user_name){
+	var idx = checkUser(user_name);
+
+	var st_names = document.querySelectorAll(".st_name");
+	st_names[idx].style.backgroundColor = "blue";
+	
+// 	for(var i = 0; i < st_names.length; i++){
+// 		if(st_names[i].innerHTML == user_name){
+// 			st_names[i].style.backgroundColor = "blue";
+// 		}
+// 	}
+}
+
+function rv_isdone(str_users){
+	var arr_user = str_users.split(",");
+	users.splice(0, users.length);
+	for(var i = 0; i < arr_user.length; i++){
+		users.push(arr_user[i]);
+// 		rv_ready(arr_user[i]);
+	}
+	var st_names = document.querySelectorAll(".st_name");
+	for(var i = 0; i < st_names.length; i++){
+		st_names[i].innerHTML = "___";
+		st_names[i].style.backgroundColor = "white";
+	}
+	for(var i = 0; i < users.length; i++){
+		st_names[i].innerHTML = users[i];
+		st_names[i].style.backgroundColor = "red";
+	}
+}
+
+// var idx = 0;
+var users = [];
+function checkUser(user_name){
+	for(var i = 0; i < users.length; i++){
+		if(users[i] == user_name){
+			return i;
+		}
+	}
+	return -1;
+}
+
+function rv_ready(user_name){
+	var idx = checkUser(user_name);
+	
+	if(idx == -1){
+		users.push(user_name);
+	}
+	
+	var st_names = document.querySelectorAll(".st_name");
+	
+	for(var i = 0; i < users.length; i++){
+		st_names[i].innerHTML = users[i];
+	}
+	//st_names[idx].innerHTML = st_names[idx];
+	//idx++;
+	
+// 	for(var i = 0; i < st_names.length; i++){
+// 		if(st_names[i].innerHTML == "___"){
+// 			for(var j = 0; j < st_names.length; j++){
+// 				if(i != j && user_name != st_names[j].innerHTML){
+// 					st_names[i].innerHTML = user_name;
+// 					return;
+// 				}
+// 			}
+// 		}
+// 	}
+}
+
+function fn_isdone(){
+	sock.send("isdone:" + users);
+
+}
+
+var reqName = /^[가-힣]{2,4}$/;
+function fn_ready(){
+	var obj_it_name = document.querySelector("#it_name");
+	if(obj_it_name )
+	sock.send("ready:" + obj_it_name.value);
+}
+
+function fn_done(){
+	var obj_it_name = document.querySelector("#it_name");
+	sock.send("done:" + obj_it_name.value);
+}
+</script>
+</head>
+<body onload="fn_init()">
+	<input type="text" id="it_name" style="width: 60px">
+	<input type="button" value="READY" onclick="fn_ready()">
+	<input type="button" value="다 됐슈" onclick="fn_done()">
+	
+	<table border="1px" style="width: 200px">
+		<tr>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+		</tr>
+		<tr>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+		</tr>
+		<tr>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+		</tr>
+		<tr>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+		</tr>
+		<tr>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+			<td class="st_name">___</td>
+		</tr>
+	</table>
+	<input type="button" value="다 됐냐" onclick="fn_isdone()">
+</body>
+</html>

@@ -1,0 +1,16 @@
+from flask import Flask
+from flask import request
+from flask.templating import render_template
+from flask.json import jsonify
+from day14.dao_teacher import Dao
+import time
+    
+app = Flask(__name__)
+
+@app.route('/')
+@app.route('/thread')
+def three():
+    return render_template('thread.html')
+
+if __name__ == '__main__':
+    app.run()
