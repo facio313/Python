@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="rv_isdone"/>
+		<item key="selection" value="str"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="str"/>
+			<item value="bad.png"/>
+			<item value="bad"/>
+			<item value="192"/>
+			<item value="fn_done"/>
+			<item value="299"/>
 			<item value="rv_isdone"/>
 			<item value="const"/>
 			<item value="A"/>
@@ -17,14 +23,9 @@
 			<item value="s_id"/>
 			<item value="editEmp"/>
 			<item value="newEmp"/>
-			<item value="사번"/>
-			<item value="성별"/>
-			<item value="addr"/>
-			<item value="sex"/>
-			<item value="e_name"/>
-			<item value="e_id"/>
 		</list>
 		<list key="replacehistory">
+			<item value="499"/>
 			<item value="var"/>
 			<item value="teacher"/>
 			<item value="addr"/>
@@ -39,7 +40,6 @@
 			<item value="s_name"/>
 			<item value="s_id"/>
 			<item value="student"/>
-			<item value="name"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

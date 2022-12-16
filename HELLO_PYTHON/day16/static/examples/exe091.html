@@ -36,10 +36,10 @@
          var bads = [];
          
          var xzs = [
-            { 'x':-300,      'z':-300 },
-            { 'x':300,      'z':300 },
-            { 'x':-300,    'z':300 },
-            { 'x':300,       'z':-300 }
+            { 'x':-500,      'z':-500 },
+            { 'x':500,      'z':500 },
+            { 'x':-500,    'z':500 },
+            { 'x':500,       'z':-500 }
          ]; //상수로서 작용한다
 
          function init() {
@@ -57,10 +57,10 @@
 			player = new THREE.Mesh( geometry, material );
             scene.add( player );
 			
-            camera.lookAt( player.position );
+//            camera.lookAt( player.position );
             
-//            for(var i=0;i<xzs.length;i++){
-            for (var i = 0; i < 20; i++){
+            for(var i=0;i<xzs.length;i++){
+//            for (var i = 0; i < 20; i++){
                geometry = new THREE.BoxGeometry( 100, 10, 100 );
                texture = new THREE.TextureLoader().load( 'tangtang/enemy.png' );
                material = new THREE.MeshBasicMaterial( { map: texture } );
@@ -74,12 +74,12 @@
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			}
 			
-            for(var i = 0; i < bads.length; i++) {			
-//            for(var i=0;i<xzs.length;i++){
-//               bads[i].position.x = xzs[i].x;
-//               bads[i].position.z = xzs[i].z;
-			   bads[i].position.x = parseInt(rand(-800, 800));
-               bads[i].position.z = parseInt(rand(-800, 800));
+//            for(var i = 0; i < bads.length; i++) {			
+            for(var i=0;i<xzs.length;i++){
+               bads[i].position.x = xzs[i].x;
+               bads[i].position.z = xzs[i].z;
+//			   bads[i].position.x = parseInt(rand(-800, 800));
+//             bads[i].position.z = parseInt(rand(-800, 800));
             }
    
             renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -164,6 +164,20 @@
 				}
 			}
 			
+			var str_character_pos = "";
+			for (var i = 0; i < bads.length; i++) {
+				var b = bads[i];
+				var bx = parseInt(b.position.x);
+				var bz = parseInt(b.position.z);
+				str_character_pos += "b." + bx + "." + bz + ",";
+			}
+			
+			var ppx = parseInt(player.position.x);
+			var ppz = parseInt(player.position.z);
+			str_character_pos += "p." + ppx + "." + ppz;
+			
+			console.log(str_character_pos);
+			
 			camera.lookAt(player.position);
 
 			renderer.render( scene, camera );
@@ -243,7 +257,6 @@
 			document.querySelector("#span_cnt_bullet").innerHTML = cnt_bullet;
 			console.log(cnt_bullet);
 		 }
-		 
 		 
          init();
          animate();
